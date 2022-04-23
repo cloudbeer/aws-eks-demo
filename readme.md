@@ -1,3 +1,34 @@
+# Deploy micro-services on Amazon EKS 
+
+This demo show how to deploy micro-services system on Amazon EKS. 
+
+It includes:
+
+- Create EKS (Managed EC2 and fargate) instance, use terraform.  See folder ./terraform
+
+- 3 services source code:
+    - mall (reactjs), frontend SPA app, folder ./src/mall
+    - product (java), provide product list and detail restful api, folder ./src/product
+    - review (php), provide product review restful api, folder ./src/review
+
+- product and review will deploy to Fargate severless pod.
+
+
+## Step 1. Create eks and dependencies.
+
+```shell
+cd terraform
+terraform apply
+```
+- Create a VPC and 6 subnets. Apps will be deployed in 3 private subnets 
+
+- Create an EKS instance, a manged EC2 group, a Fargate profile, review and product app will be doployed to Fargate.
+
+- Please note that EKS API server is public in this demo. Use Bastion instances access EKS is suggusted.
+
+
+
+
 # 使用 AWS EKS 部署微服务应用
 
 ## 开通 eks 资源
