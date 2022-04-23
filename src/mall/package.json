@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "export PORT=8000 && react-app-rewired start",
-    "build": "GENERATE_SOURCEMAP=false PUBLIC_URL=https://training-1251707795.file.myqcloud.com/mall/  react-app-rewired build",
+    "build": "GENERATE_SOURCEMAP=false PUBLIC_URL=https://training-1251707795.file.myqcloud.com/mall/ react-app-rewired --openssl-legacy-provider build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

@@ -28,5 +28,16 @@ aws eks update-kubeconfig --region ap-south-1 --name xyz-shop-eks-prod
 
 此命令会覆盖 ~/.kube/config 文件。
 
+## 开通 ECR
+
+创建仓库： `xyz-shop/review`, `xyz-shop/product`
+
+
+在本地登录仓库：
+
+``` shell
+aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 88888888888.dkr.ecr.ap-south-1.amazonaws.com
+```
+
 
 ## 部署应用
