@@ -14,7 +14,7 @@ It includes:
 - product and review will deploy to Fargate severless pod.
 
 
-## Step 1. Create eks and dependencies.
+## Step 1. Create EKS and its dependencies.
 
 ```shell
 cd terraform
@@ -22,12 +22,40 @@ terraform apply
 ```
 - Create a VPC and 6 subnets. Apps will be deployed in 3 private subnets 
 
-- Create an EKS instance, a manged EC2 group, a Fargate profile, review and product app will be doployed to Fargate.
+- Create an EKS instance, a manged EC2 group with 3 t3.small instances, a Fargate profile, review and product will be doployed to Fargate.
 
 - Please note that EKS API server is public in this demo. Use Bastion instances access EKS is suggusted.
 
+- These services will be created too: NAT gateway, security group,.
+
+After terraform scripts finished, Export a kubeconfig file to ~/.kube/config on your local machine.
+
+```
+aws eks update-kubeconfig --region ap-south-1 --name xyz-shop-eks-prod
+```
+- Please change region and name as same as your EKS enviroment.
 
 
+## Step 2. Create ECR instacne
+
+Create ECR instance in AWS web console. It is simple.
+
+create 2 repos： `xyz-shop/review`, `xyz-shop/product`
+
+
+Login to ECR on your local machine：
+
+```shell
+aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 88888888888.dkr.ecr.ap-south-1.amazonaws.com
+```
+
+
+## Step 3. Build Docker images
+
+
+
+
+--- 
 
 # 使用 AWS EKS 部署微服务应用
 
@@ -66,7 +94,7 @@ aws eks update-kubeconfig --region ap-south-1 --name xyz-shop-eks-prod
 
 在本地登录仓库：
 
-``` shell
+```shell
 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 88888888888.dkr.ecr.ap-south-1.amazonaws.com
 ```
 
